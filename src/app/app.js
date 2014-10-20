@@ -3,11 +3,22 @@ angular.module( 'ngBoilerplate', [
   'templates-common',
   'ngBoilerplate.home',
   'ngBoilerplate.about',
-  'ui.router'
+  'ngBoilerplate.hibernationstatus',
+  'ui.router',
+    'restangular'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
-  $urlRouterProvider.otherwise( '/home' );
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, RestangularProvider ) {
+        $urlRouterProvider.otherwise( '/home' );
+
+
+    RestangularProvider.setBaseUrl('http://petworth:5001');
+    //RestangularProvider.setListTypeIsArray(false);
+    RestangularProvider.setRestangularFields({
+        id: "_id"
+    });
+
+
 })
 
 .run( function run () {
